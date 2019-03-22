@@ -1,0 +1,27 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: demo
+  labels:
+    app: demo
+spec:
+  replicas: 1
+  minReadySeconds: 10
+  selector:
+    matchLabels:
+      app: demo
+      release: demo
+  template:
+    metadata:
+      labels:
+        app: demo
+        release: demo
+    spec:
+      containers:
+      - name: demo
+        image: "scraly/test.dockerapp:latest"
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: http
+          containerPort: 8080
+          protocol: TCP

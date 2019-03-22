@@ -1,0 +1,13 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: demo
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+      - name: demo
+        image: "scraly/test.dockerapp:latest"
+      imagePullSecrets:
+        - name: regsecret-preprod
