@@ -14,6 +14,7 @@ File system approach :
 
 ```
 ├── someapp
+    ├── kustomization.yaml
     ├── base
     │   ├── deployment.yaml
     │   ├── kustomization.yaml
@@ -30,10 +31,13 @@ File system approach :
             └── kustomization.yaml
 ```
 
-In base folder we define common resources.
-In overlays folders we define environment specific patches. Into the environment folder we can have for example a yaml file called replica_count.yaml or cpu_count.yaml instead of generic name like deployment.yaml.
+* In the root folder we have our main *kustomization.yaml* file  (which defined where are our bases resources)
+* In *base* folder we define common resources.
+* In overlays folders we define environment specific patches. Into the environment folder we can have, for example, a yaml file called replica_count.yaml or cpu_count.yaml instead of generic name like deployment.yaml.
 
 ## Deployment
+
+## Deploy on a specific environment
 
 Dry-run deployment in dev environment:
 
@@ -42,6 +46,8 @@ Dry-run deployment in dev environment:
 Create/deploy the resources for the dev environment variant:
 
 `$ kustomize build deploy/demo/overlays/dev | kubectl apply -f -`
+
+## Deploy on a specific environment and set the image tag dynamically
 
 If we want to deploy and set the tag used on an image to match an environment variable, run:
 
