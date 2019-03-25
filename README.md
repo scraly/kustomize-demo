@@ -14,7 +14,6 @@ File system approach :
 
 ```
 ├── someapp
-    ├── kustomization.yaml
     ├── base
     │   ├── deployment.yaml
     │   ├── kustomization.yaml
@@ -31,7 +30,6 @@ File system approach :
             └── kustomization.yaml
 ```
 
-* In the root folder we have our main *kustomization.yaml* file  (which defined where are our bases resources)
 * In *base* folder we define common resources.
 * In overlays folders we define environment specific patches. Into the environment folder we can have, for example, a yaml file called replica_count.yaml or cpu_count.yaml instead of generic name like deployment.yaml.
 
@@ -51,7 +49,7 @@ Create/deploy the resources for the dev environment variant:
 
 If we want to deploy and set the tag used on an image to match an environment variable, run:
 
-`$ kustomize edit set image demo:123456`
+`$ kustomize edit set image scraly/test.dockerapp:123456`
 
 (*demo* is our image name in this example)
 
@@ -64,6 +62,6 @@ and then our previous command which build and apply:
 ```
 ...
 images:
-- name: demo
+- name: scraly/test.dockerapp
   newTag: "123456"
 ```
